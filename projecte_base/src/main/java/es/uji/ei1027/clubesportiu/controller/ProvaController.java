@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProvaController {
 
     private ProvaDao provaDao;
+
+    @Autowired
+    public void setProvaDaoDao(ProvaDao provaDao) {
+        this.provaDao = provaDao;
+    }
+
     @RequestMapping("/list")
     public String listProves(Model model) {
         model.addAttribute("proves", provaDao.getProves());
