@@ -23,7 +23,7 @@ public class NadadorDao {
     }
 
     /* Afegeix el nadador a la base de dades*/
-    void addNadador(Nadador nadador) {
+    public void addNadador(Nadador nadador) {
         jdbcTemplate.update("INSERT INTO Nadador VALUES(?, ?, ?, ?, ?)",
         nadador.getNom(),nadador.getNumFederat(),nadador.getPais(),nadador.getEdat(),nadador.getGenere());
 
@@ -36,7 +36,7 @@ public class NadadorDao {
 
     /* Actualitza els atributs del nadador
        (excepte el nom, que és la clau primària) */
-    void updateNadador(Nadador nadador) {
+    public void updateNadador(Nadador nadador) {
         jdbcTemplate.update("UPDATE Nadador SET num_federat=?, pais=?, edat=?, genere=? WHERE nom=?",
         nadador.getNumFederat(),nadador.getPais(),nadador.getEdat(),nadador.getGenere(), nadador.getNom());
     }
@@ -61,4 +61,7 @@ public class NadadorDao {
         }
     }
 
+    public void deleteNadador(String nom) {
+            jdbcTemplate.update("DELETE FROM Nadador WHERE nom=?",nom);
+    }
 }

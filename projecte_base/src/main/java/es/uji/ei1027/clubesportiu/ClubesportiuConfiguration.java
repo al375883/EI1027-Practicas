@@ -3,7 +3,7 @@ package es.uji.ei1027.clubesportiu;
 import es.uji.ei1027.clubesportiu.categoria.Categoria;
 import es.uji.ei1027.clubesportiu.categoria.CategoriaFederacio;
 import es.uji.ei1027.clubesportiu.categoria.CategoriaWorldCup;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
