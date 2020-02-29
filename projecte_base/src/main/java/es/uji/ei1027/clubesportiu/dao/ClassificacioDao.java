@@ -63,5 +63,16 @@ public class ClassificacioDao {
         }
     }
 
+    public List<Classificacio> getClassificacioProva(String nomProva) {
+        return this.jdbcTemplate.query(
+                "SELECT * FROM classificacio WHERE nom_prova=?",
+                new Object[] {nomProva}, new ClassificacioRowMapper());
+    }
+
+
+    public List<Classificacio> getClassificacioPais(String pais) {
+        return this.jdbcTemplate.query("SELECT * FROM classificacio WHERE nom_nadador IN (SELECT nom FROM Nadador WHERE pais=?)",
+                new Object[] {pais}, new ClassificacioRowMapper());
+    }
 }
 

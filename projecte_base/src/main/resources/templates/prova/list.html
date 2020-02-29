@@ -16,6 +16,7 @@
         <th scope="col">Data</th>
         <th></th>
         <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -24,13 +25,12 @@
         <td th:text="${prova.descripcio}"></td>
         <td th:text="${prova.tipus}"></td>
         <td th:text="${prova.data}"></td>
-        <td><a th:href="@{/prova/update/{nom}(nom=${prova.nom})}"><button type="button" class="btn btn-warning">Edita</button></a>
-        </td>
-        <td><a th:href="@{/prova/delete/{nom}(nom=${prova.nom})}"><button type="button" class="btn btn-danger">Esborra</button></a>
-        </td>
+        <td><a th:href="@{/prova/update/{nom}(nom=${prova.nom})}" role="button" class="btn btn-warning">Edita</a></td>
+        <td><a th:href="@{/prova/delete/{nom}(nom=${prova.nom})}" role="button" class="btn btn-danger">Esborra</a></td>
+        <td><a th:href="@{/classificacio/perpais/{nom}(nom=${prova.nom})}" role="button" class="btn btn-info">Per país</a></td>
     </tr>
     </tbody>
 </table>
-<a href="add"><button type="button" class="btn btn-success">Afegeix prova</button></a>
+<a href="add" role="button" class="btn btn-success">Afegeix prova</a>
 </body>
 </html>

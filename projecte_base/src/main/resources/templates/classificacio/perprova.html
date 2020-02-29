@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Classificacions Duos Sincro, per país</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-$END$
+<h2>Nadadors per Prova</h2>
+<h3 th:text="${pais}"></h3>
+
+<div th:each="prova: ${classificacions.keySet()}">
+    <h4 th:text="${prova}"></h4>
+    <ul>
+        <li th:each="nadador: ${classificacions.get(prova)}">
+            <span th:text="${nadador.nom}"></span>
+        </li>
+    </ul>
+</div>
 </body>
 </html>

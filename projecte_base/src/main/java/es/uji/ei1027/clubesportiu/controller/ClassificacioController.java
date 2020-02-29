@@ -3,6 +3,7 @@ package es.uji.ei1027.clubesportiu.controller;
 import es.uji.ei1027.clubesportiu.dao.ClassificacioDao;
 import es.uji.ei1027.clubesportiu.model.Classificacio;
 import es.uji.ei1027.clubesportiu.model.Nadador;
+import es.uji.ei1027.clubesportiu.services.ClassificacioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +35,7 @@ public class ClassificacioController {
         if (bindingResult.hasErrors())
             return "classificacio/add";
         classificacioDao.addClassificacio(classificacio);
-        return "redirect:list.html";
+        return "redirect:list";
     }
 
     @RequestMapping(value="/add")
@@ -49,21 +50,41 @@ public class ClassificacioController {
         return "classificacio/update";
     }
 
-    @RequestMapping(value="/update/{nom}/{nProva}", method = RequestMethod.POST)
-    public String processUpdateSubmit(
-            @ModelAttribute("classificacio") Classificacio classificacio,
-            BindingResult bindingResult) {
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public String processUpdateSubmit(@ModelAttribute("classificacio") Classificacio classificacio, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "classificacio/update";
         classificacioDao.updateClassificacio(classificacio);
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/delete/{nNadador}/{nProva}")
-    public String processDeleteClassif(@PathVariable String nNadador,
-                                       @PathVariable String nProva) {
+    @RequestMapping(value="/delete/{nNadador}/{nProva}")
+    public String processDeleteClassif(@PathVariable String nNadador, @PathVariable String nProva) {
         classificacioDao.deleteClassificacio(nNadador, nProva);
         return "redirect:../../list";
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+
+    private ClassificacioService classificacioService;
+
+    @Autowired
+    public void setClassificacioService(ClassificacioService classificacioService) {
+        this.classificacioService = classificacioService;
+    }
+
+    @RequestMapping(value="/perpais/{nProva}")
+    public String listClsfPerPais(Model model, @PathVariable String nProva) {
+        model.addAttribute("classificacions", classificacioService.getClassificationByCountry(nProva));
+        model.addAttribute("prova",nProva);
+        return "classificacio/perpais";
+    }
+
+    @RequestMapping(value="/perprova/{pais}")
+    public String listClsfPerProva(Model model, @PathVariable String pais) {
+        model.addAttribute("classificacions", classificacioService.getClassificationByEvent(pais));
+        model.addAttribute("pais",pais);
+        return "classificacio/perprova";
     }
 
 }
