@@ -4,6 +4,8 @@
     <title>Gestionar Proves</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/natacio.css"
+          th:href="@{/css/natacio.css}"/>
 </head>
 <body>
 <h1>Llista de Proves</h1>
@@ -24,7 +26,7 @@
         <td th:text="${prova.nom}"></td>
         <td th:text="${prova.descripcio}"></td>
         <td th:text="${prova.tipus}"></td>
-        <td th:text="${prova.data}"></td>
+        <td th:text="${#temporals.format(prova.data,'dd/MM/yyyy')}"></td>
         <td><a th:href="@{/prova/update/{nom}(nom=${prova.nom})}" role="button" class="btn btn-warning">Edita</a></td>
         <td><a th:href="@{/prova/delete/{nom}(nom=${prova.nom})}" role="button" class="btn btn-danger">Esborra</a></td>
         <td><a th:href="@{/classificacio/perpais/{nom}(nom=${prova.nom})}" role="button" class="btn btn-info">Per país</a></td>

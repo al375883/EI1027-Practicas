@@ -24,7 +24,7 @@ public class ProvaDao {
     }
 
     /* Afegeix el nadador a la base de dades*/
-    void addProva(Prova prova) {
+    public void addProva(Prova prova) {
         jdbcTemplate.update("INSERT INTO Prova VALUES(?, ?, ?, ?, ?)",
                 prova.getNom(),prova.getDescripcio(),prova.getTipus(),prova.getData());
 
@@ -37,7 +37,7 @@ public class ProvaDao {
 
     /* Actualitza els atributs del nadador
        (excepte el nom, que és la clau primària) */
-    void updateProva(Prova prova) {
+    public void updateProva(Prova prova) {
         jdbcTemplate.update("UPDATE Prova descripcio=?, tipus=?, data=? WHERE nom=?",
                 prova.getDescripcio(),prova.getTipus(),prova.getData(),prova.getNom());
     }
