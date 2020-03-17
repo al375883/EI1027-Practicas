@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ClassificacioSvc implements ClassificacioService {
@@ -48,4 +49,17 @@ public class ClassificacioSvc implements ClassificacioService {
         }
         return nadadorsPerProva;
     }
+
+    public List<String> getNadadorsElegiblesPerProva(String prova) {
+        List<Nadador> nadadors = nadadorDao.getNadadors();     // tots els nadadors
+        List<String> nomsNadadors = nadadors.stream()          // sols els seus noms
+                .map(Nadador::getNom)
+                .collect(Collectors.toList());
+        List<Classificacio> classifProva = classificacioDao.getClassificacioProva(prova);
+        for (Classificacio classif : classifProva) {     // eliminar nadadors ja en la prova
+            nomsNadadors.remove(classif.getNomNadador());
+        }
+        return nomsNadadors;
+    }
+
 }

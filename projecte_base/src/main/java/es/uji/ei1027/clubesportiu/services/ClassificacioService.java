@@ -7,4 +7,5 @@ import java.util.List;
 public interface ClassificacioService {
     Map<String, List<Nadador>> getClassificationByCountry(String prova);
     Map<String, List<Nadador>> getClassificationByEvent(String pais);
-}
+    List<String> getNadadorsElegiblesPerProva(String prova);
+    }
