@@ -53,9 +53,6 @@ public class LoginController {
         if (bindingResult.hasErrors()) {
             return "login";
         }
-        if (session.getAttribute("nextUrl") != null){
-            return session.getAttribute("nextUrl")
-        }
         // Comprova que el login siga correcte
         // intentant carregar les dades de l'usuari
         user = userDao.loadUserByUsername(user.getUsername(), user.getPassword());
