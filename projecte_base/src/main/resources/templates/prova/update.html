@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <title>Modifica prova</title>
     <meta charset ="UTF-8" />
@@ -9,7 +9,10 @@
 </head>
 <body>
 <div class ="container">
-    <h2>Edita prova</h2>
+    <div th:replace="fragments/nav"></div>
+    <h1>Edita prova</h1>
+    <div th:replace="fragments/logininfo"></div>
+    <div layout:fragment="content"></div>
     <form action="#" th:action ="@{/prova/update}"
           th:object="${prova}" method ="post">
         <table>
@@ -34,7 +37,7 @@
                 <td> <input type ="text" th:field ="*{data}"/> </td>
             </tr>
             <tr>
-                <td colspan ="2"> <input type ="submit" value ="Modifica Prova"/> </td>
+                <td colspan ="2"> <input type ="submit" value ="Modifica Prova" class="btn btn-success"/> </td>
             </tr>
         </table>
     </form>

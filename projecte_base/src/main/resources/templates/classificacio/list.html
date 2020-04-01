@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <title>Gestionar Classificacions</title>
     <meta charset="UTF-8" />
@@ -10,7 +10,10 @@
 </head>
 <body>
 <div class="container">
+    <div th:replace="fragments/nav"></div>
     <h1>Llista de Classificacions</h1>
+    <div th:replace="fragments/logininfo"></div>
+    <div layout:fragment="content"></div>
     <table class="table table-striped">
         <thead>
         <tr>

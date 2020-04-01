@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <title>Gestionar Nadadors</title>
     <meta charset="UTF-8" />
@@ -9,38 +9,41 @@
 </head>
 <body>
 <div class="container">
-<h1>Llista de Nadadors</h1>
-    <div th:if="${#lists.isEmpty(listNadadors)}">
-        No hi ha nadadors en la base de dades
-    </div>
-    <table th:unless="${#lists.isEmpty(listNadadors)}" class="table table-striped">
-    <thead>
-    <tr>
-        <th>Num. Federat</th>
-        <th>Nom</th>
-        <th>Pais</th>
-        <th>Edat</th>
-        <th>Gènere</th>
-        <th></th>
-        <th></th>
-        <th>Classificacio</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="nadador:${#lists.sort(listNadadors)}">
-        <td th:text="${nadador.numFederat}"></td>
-        <td th:text="${nadador.nom}"
-            th:class="${#strings.equals(nadador.genere,'Femení')} ? font-weight-bold : font-italic"></td>
-        <td th:text="${nadador.pais}"></td>
-        <td th:text="${nadador.edat}"></td>
-        <td th:text="${nadador.genere}"></td>
-        <td><a th:href="@{/nadador/update/{nom}(nom=${nadador.nom})}" class="btn btn-warning" role="button">Edita</a></td>
-        <td><a th:href="@{/nadador/delete/{nom}(nom=${nadador.nom})}" class="btn btn-danger" role="button">Esborra</a></td>
-        <td><a th:href="@{/classificacio/perprova/{pais}(pais=${nadador.pais})}" class="btn btn-info" role="button">Per Prova</a></td>
-    </tr>
-    </tbody>
-</table>
-<a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Afegeix nadador</a>
+    <div th:replace="fragments/nav"></div>
+    <h1>Llista de Nadadors</h1>
+    <div th:replace="fragments/logininfo"></div>
+    <div layout:fragment="content"></div>
+        <div th:if="${#lists.isEmpty(listNadadors)}">
+            No hi ha nadadors en la base de dades
+        </div>
+        <table th:unless="${#lists.isEmpty(listNadadors)}" class="table table-striped">
+        <thead>
+        <tr>
+            <th>Num. Federat</th>
+            <th>Nom</th>
+            <th>Pais</th>
+            <th>Edat</th>
+            <th>Gènere</th>
+            <th></th>
+            <th></th>
+            <th>Classificacio</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="nadador:${#lists.sort(listNadadors)}">
+            <td th:text="${nadador.numFederat}"></td>
+            <td th:text="${nadador.nom}"
+                th:class="${#strings.equals(nadador.genere,'Femení')} ? font-weight-bold : font-italic"></td>
+            <td th:text="${nadador.pais}"></td>
+            <td th:text="${nadador.edat}"></td>
+            <td th:text="${nadador.genere}"></td>
+            <td><a th:href="@{/nadador/update/{nom}(nom=${nadador.nom})}" class="btn btn-warning" role="button">Edita</a></td>
+            <td><a th:href="@{/nadador/delete/{nom}(nom=${nadador.nom})}" class="btn btn-danger" role="button">Esborra</a></td>
+            <td><a th:href="@{/classificacio/perprova/{pais}(pais=${nadador.pais})}" class="btn btn-info" role="button">Per Prova</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Afegeix nadador</a>
 </div>
 </body>
 </html>

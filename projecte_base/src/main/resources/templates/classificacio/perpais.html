@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <title>Classificacions Duos Sincro, per país</title>
     <meta charset="UTF-8" />
@@ -9,16 +9,21 @@
           th:href="@{/css/natacio.css}"/>
 </head>
 <body>
-<h2 th:text="${prova}"></h2>
-<h3>Nadadors per Pais</h3>
+<div class="container">
+    <div th:replace="fragments/nav"></div>
+    <h1 th:text="${prova}"></h1>
+    <div th:replace="fragments/logininfo"></div>
+    <div layout:fragment="content"></div>
+    <h2>Nadadors per Pais</h2>
 
-<div th:each="pais: ${classificacions.keySet()}">
-    <h4 th:text="${pais}"></h4>
-    <ul>
-        <li th:each="nadador: ${classificacions.get(pais)}">
-            <span th:text="${nadador.nom}"></span>
-        </li>
-    </ul>
+    <div th:each="pais: ${classificacions.keySet()}">
+        <h4 th:text="${pais}"></h4>
+        <ul>
+            <li th:each="nadador: ${classificacions.get(pais)}">
+                <span th:text="${nadador.nom}"></span>
+            </li>
+        </ul>
+    </div>
 </div>
 </body>
 </html>

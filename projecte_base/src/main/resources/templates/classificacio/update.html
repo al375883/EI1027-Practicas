@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <title>Gestionar Classificacions</title>
     <meta charset="UTF-8" />
@@ -10,7 +10,10 @@
 </head>
 <body>
 <div class="container">
-    <h2>Editar classificació</h2>
+    <div th:replace="fragments/nav"></div>
+    <h1>Editar classificació</h1>
+    <div th:replace="fragments/logininfo"></div>
+    <div layout:fragment="content"></div>
     <form class="form-horizontal" action="#" th:action="@{/classificacio/update}"
           th:object="${classificacio}" method="post">
 
@@ -44,7 +47,7 @@
 
         <div class="form-group row">
             <div class="col-sm-offset-2 col-sm-4">
-                <button type="submit" class="btn btn-primary">Actualitza la classificacio</button>
+                <button type="submit" class="btn btn-success">Actualitza la classificacio</button>
             </div>
         </div>
 

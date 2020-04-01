@@ -24,7 +24,7 @@ public class UserController {
         if (session.getAttribute("user") == null)
         {
             model.addAttribute("user", new UserDetails());
-            model.addAttribute("nextUrl", session.getAttribute("url"));
+            session.setAttribute("nextUrl", "user/list");
             return "login";
         }
         model.addAttribute("users", userDao.listAllUsers());
